@@ -19,9 +19,7 @@ def mymap(func, args):
 
     res = []
     for f in func:
-        tempres = []
-        for arg in args:
-            tempres.append(f(arg))
+        tempres = map(f, args)
         if len(tempres) > 1:
             tempres = tuple(tempres)
         else:
