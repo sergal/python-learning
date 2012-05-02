@@ -9,12 +9,10 @@ def accepts(*types):
                     accepted = False
                     break
 
-            if accepted:
-                print "acceped"
-                return f(*args)
-            else:
-                print "not accepted"
-                return None
+            if not accepted:
+                raise TypeError
+
+            return f(*args)
 
         return tmp
 
@@ -31,12 +29,10 @@ def returns(*types):
             if not True in acceptedlist:
                 accepted = False
 
-            if accepted:
-                print "good return"
-                return res
-            else:
-                print "bad return"
-                return None
+            if not accepted:
+                raise TypeError
+
+            return res
 
         return tmp
 
