@@ -6,16 +6,27 @@ def mymap(func, args):
     >>> minus1 = lambda x: x-1
     >>> mymap(plus1, 1)
     [2]
+    >>> mymap(plus1, [1,3])
+    [(2, 4)]
     >>> mymap([plus1, minus1], [1,2])
-    [2, 1]
+    [(2, 3), (0, 1)]
     """
     if not isinstance(func, Iterable):
         func = [func]
+
+    if not isinstance(args, Iterable):
         args = [args]
 
     res = []
-    for index, item in enumerate(func):
-        res.append(item(args[index]))
+    for f in func:
+        tempres = []
+        for arg in args:
+            tempres.append(f(arg))
+        if len(tempres) > 1:
+            tempres = tuple(tempres)
+        else:
+            tempres = tempres[0]
+        res.append(tempres)
 
     return res
 
